@@ -162,135 +162,13 @@ For complete step-by-step setup with screenshots and detailed instructions:
 2. **[SharePoint App Registration](help/02-sharepoint-app-registration.md)** - Register app in Azure AD, configure Graph API permissions
 3. **[SharePoint Connection Setup](help/03-sharepoint-connection.md)** - Configure SharePoint connector in AI Foundry with authentication
 
-## 🎯 Implementation Options
 
-### Option 1: Validate SharePoint Connection in AI Foundry Portal
 
-**Summary**: Test SharePoint connectivity directly through the Azure AI Foundry web interface without writing code. This approach validates your connection setup and permissions before proceeding to SDK implementation.
 
-**Detailed Guide**: [Testing SharePoint Connection in AI Foundry Portal](help/04-portal-testing.md)
-
-### Option 2: Using Python SDK Implementation
-
-**Summary**: Programmatic access to SharePoint documents using Azure AI Python SDK. Build custom applications that can query, analyze, and interact with SharePoint content through AI agents.
-
-## 🚀 Quick Start - Python SDK
-
-### Installation & Setup
-
-1. **Clone and install dependencies**:
-```bash
-git clone https://github.com/your-org/sharepoint-ai-foundry-demo
-cd sharepoint-ai-foundry-demo
-pip install -r requirements.txt
-```
-
-2. **Configure environment variables**:
-
-Create `.env` file with your specific values:
-```env
-PROJECT_ENDPOINT=https://your-project.services.ai.azure.com/api/projects/your-project
-SHAREPOINT_CONNECTION_ID=/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.CognitiveServices/accounts/{account}/projects/{project}/connections/{connection-name}
-MODEL_DEPLOYMENT_NAME=gpt-4o
-document_name=your-test-document.docx
-```
-
-**How to get these values**: See [Environment Setup Guide](help/05-environment-setup.md)
-
-### Code Example 1: Basic SharePoint Access
-
-```python
-python sample_agents_sharepoint.py
-```
-
-**Expected Output**:
-```
-=== SharePoint Agent Demo ===
-✅ Created AI Project Client
-✅ Created SharePoint Tool
-✅ Created agent: asst_abc123xyz
-✅ Created thread: thread_def456uvw
-📝 User: Please analyze the documents in our SharePoint site
-🤖 Agent: I can help you analyze SharePoint documents...
-
-Run Status: COMPLETED (if successful) or FAILED (see error below)
-```
-
-**If Failed - Expected Error**:
-```
-Run Status: RunStatus.FAILED
-Error: {'code': 'tool_server_error', 'message': 'Error: sharepoint_tool_server_error; Bad Request'}
-
-Note: This error typically indicates missing Microsoft 365 Copilot license requirement.
-```
-
-### Code Example 2: Connection Validation & Troubleshooting
-
-```python
-python testing/diagnostic_sharepoint.py
-```
-
-**Expected Output - All Stages**:
-```
-=== SharePoint Connection Diagnostic ===
-✅ Authentication: Working
-✅ AI Project Client: Working  
-✅ SharePoint Tool Creation: Working
-✅ Model Deployment: Working
-❌ SharePoint Tool Execution: FAILING (if no M365 Copilot license)
-
-🔧 DIAGNOSIS: Microsoft 365 Copilot license required for SharePoint tool access
-```
-
-## 🧪 Testing
-
-Comprehensive test suite located in `testing/` folder:
-
-```bash
-python testing/diagnostic_sharepoint.py
-```
-
-## 📁 Project Structure
-
-```
-sharepoint-ai-foundry-demo/
-├── README.md                           # This file
-├── requirements.txt                    # Python dependencies
-├── sample_agents_sharepoint.py         # Main demo application
-├── .env.example                        # Environment template
-├── LICENSE                             # MIT License
-├── help/                              # Detailed documentation
-│   ├── 01-ai-foundry-setup.md        # AI Foundry project setup
-│   ├── 02-sharepoint-app-registration.md # App registration guide  
-│   ├── 03-sharepoint-connection-setup.md # Connection configuration
-│   ├── portal-testing-guide.md        # Portal testing guide
-│   └── environment-setup.md           # Environment configuration
-└── testing/                          # Test suite
-    ├── diagnostic_sharepoint.py       # Connection diagnostics
-    ├── test_basic_agent.py           # Basic functionality tests
-    ├── test_sharepoint_connection.py  # Connection tests
-    ├── test_document_access.py        # Document access tests
-    └── test_official_sample_format.py # Sample format tests
-```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🆘 Support & Troubleshooting
-
-- **Setup Issues**: Check [help/](help/) documentation
-- **Connection Problems**: Run `testing/diagnostic_sharepoint.py`
-- **Azure Support**: [Azure AI Foundry Documentation](https://docs.microsoft.com/en-us/azure/ai-services/)
-
----
 
 **Built with ❤️ for the Azure AI community**
